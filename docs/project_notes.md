@@ -60,10 +60,46 @@ Expected use:
 
 ---
 
-## Next Steps
+## Raw Data Inspection: Football-Data Match CSV
 
-1. Download the 2024/25 Premier League match CSV from Football-Data.
-2. Save it in `data/raw`.
-3. Inspect the columns in Excel.
-4. Record the row grain, useful fields, and possible issues.
-5. Begin updating the data dictionary.
+### File
+
+`data/raw/epl_2024_25_matches.csv`
+
+### Source
+
+Football-Data 2024/25 Premier League CSV
+
+### Row Grain
+
+One row represents one Premier League match.
+
+### Key Fields Identified
+
+- `Date`
+- `HomeTeam`
+- `AwayTeam`
+- `FTHG`
+- `FTAG`
+- `FTR`
+- `HS`
+- `AS`
+- `HST`
+- `AST`
+- `HC`
+- `AC`
+- `HY`
+- `AY`
+- `HR`
+- `AR`
+
+### Initial Use
+
+This dataset will be used to create match-level and team-match-level tables.
+
+### Notes
+
+- The file contains both match statistics and betting odds.
+- The first stage of the project will focus on match statistics only.
+- Betting odds columns will be ignored for the initial analysis.
+- The data will later be reshaped from one row per match into one row per team per match.
