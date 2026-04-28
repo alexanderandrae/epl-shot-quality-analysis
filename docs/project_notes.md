@@ -103,3 +103,66 @@ This dataset will be used to create match-level and team-match-level tables.
 - The first stage of the project will focus on match statistics only.
 - Betting odds columns will be ignored for the initial analysis.
 - The data will later be reshaped from one row per match into one row per team per match.
+
+---
+
+## Football-Data Column Selection
+
+### File Reviewed
+
+`data/raw/epl_2024_25_matches.csv`
+
+### Row Grain
+
+One row represents one Premier League match.
+
+### Columns Selected for Initial SQL Table
+
+| Column | Planned Use |
+|---|---|
+| `Div` | League identifier |
+| `Date` | Match date |
+| `Time` | Match kickoff time |
+| `HomeTeam` | Home team |
+| `AwayTeam` | Away team |
+| `FTHG` | Full-time home goals |
+| `FTAG` | Full-time away goals |
+| `FTR` | Full-time result |
+| `HTHG` | Half-time home goals |
+| `HTAG` | Half-time away goals |
+| `HTR` | Half-time result |
+| `Referee` | Match context |
+| `HS` | Home shots |
+| `AS` | Away shots |
+| `HST` | Home shots on target |
+| `AST` | Away shots on target |
+| `HF` | Home fouls |
+| `AF` | Away fouls |
+| `HC` | Home corners |
+| `AC` | Away corners |
+| `HY` | Home yellow cards |
+| `AY` | Away yellow cards |
+| `HR` | Home red cards |
+| `AR` | Away red cards |
+
+### Columns Ignored for Initial Analysis
+
+Betting odds columns will be ignored in the first version of the project.
+
+Examples include bookmaker odds and market average odds such as:
+
+- `B365H`
+- `B365D`
+- `B365A`
+- `MaxH`
+- `MaxD`
+- `MaxA`
+- `AvgH`
+- `AvgD`
+- `AvgA`
+
+### Reason for Excluding Betting Odds
+
+The initial project focus is team performance, shot volume, attacking efficiency, and defensive vulnerability.
+
+Betting odds may be useful for a future market-expectation analysis, but they are outside the scope of the first version.
