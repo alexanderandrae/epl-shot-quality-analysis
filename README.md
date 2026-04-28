@@ -43,3 +43,6 @@ sql/
   02_clean_tables.sql
   03_derived_tables.sql
   04_analysis_queries.sql
+
+## Project Status
+Football-Data match dataset added. Initial column inspection and source documentation in progress.
