@@ -8,30 +8,45 @@ This document defines the planned tables, fields, and metrics for the EPL Shot Q
 
 One row per Premier League match.
 
-Planned source file:
+Source file:
 
 `data/raw/epl_2024_25_matches.csv`
 
-Expected key fields:
+Planned SQL table name:
 
-| Column | Description |
-|---|---|
-| `Date` | Match date |
-| `HomeTeam` | Home team name |
-| `AwayTeam` | Away team name |
-| `FTHG` | Full-time home goals |
-| `FTAG` | Full-time away goals |
-| `FTR` | Full-time result |
-| `HS` | Home team shots |
-| `AS` | Away team shots |
-| `HST` | Home shots on target |
-| `AST` | Away shots on target |
-| `HC` | Home corners |
-| `AC` | Away corners |
-| `HY` | Home yellow cards |
-| `AY` | Away yellow cards |
-| `HR` | Home red cards |
-| `AR` | Away red cards |
+`raw_matches`
+
+| Column | Description | Initial Data Type |
+|---|---|---|
+| `Div` | League division | Text |
+| `Date` | Match date | Date |
+| `Time` | Match kickoff time | Text |
+| `HomeTeam` | Home team name | Text |
+| `AwayTeam` | Away team name | Text |
+| `FTHG` | Full-time home goals | Integer |
+| `FTAG` | Full-time away goals | Integer |
+| `FTR` | Full-time result: H = home win, D = draw, A = away win | Text |
+| `HTHG` | Half-time home goals | Integer |
+| `HTAG` | Half-time away goals | Integer |
+| `HTR` | Half-time result: H = home lead, D = draw, A = away lead | Text |
+| `Referee` | Match referee | Text |
+| `HS` | Home team shots | Integer |
+| `AS` | Away team shots | Integer |
+| `HST` | Home shots on target | Integer |
+| `AST` | Away shots on target | Integer |
+| `HF` | Home fouls committed | Integer |
+| `AF` | Away fouls committed | Integer |
+| `HC` | Home corners | Integer |
+| `AC` | Away corners | Integer |
+| `HY` | Home yellow cards | Integer |
+| `AY` | Away yellow cards | Integer |
+| `HR` | Home red cards | Integer |
+| `AR` | Away red cards | Integer |
+
+Notes:
+
+- Betting odds columns are excluded from the first version of the SQL workflow.
+- This table will later be reshaped into a team-match table with one row per team per match.
 
 ### shots
 One row per shot.
