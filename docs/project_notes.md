@@ -166,3 +166,38 @@ Examples include bookmaker odds and market average odds such as:
 The initial project focus is team performance, shot volume, attacking efficiency, and defensive vulnerability.
 
 Betting odds may be useful for a future market-expectation analysis, but they are outside the scope of the first version.
+
+---
+
+## Clean Match Dataset Created
+
+### Clean File
+
+`data/clean/epl_2024_25_matches_clean.csv`
+
+### Source File
+
+`data/raw/epl_2024_25_matches.csv`
+
+### Cleaning Actions Completed
+
+- Selected match-performance columns only.
+- Removed betting odds columns from the working dataset.
+- Renamed source columns into SQL-friendly snake_case names.
+- Preserved the original raw file unchanged.
+
+### Row Grain
+
+One row represents one Premier League match.
+
+### Expected Row Count
+
+380 match rows.
+
+### Purpose
+
+This cleaned file will be used as the import file for the first MySQL table.
+
+### Notes
+
+The cleaned file focuses on match results and match statistics only. Betting odds may be revisited in a future version of the project but are outside the scope of the initial performance analysis.
