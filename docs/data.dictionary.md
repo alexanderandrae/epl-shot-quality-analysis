@@ -5,7 +5,33 @@ This document defines the planned tables, fields, and metrics for the EPL Shot Q
 ## Planned Tables
 
 ### matches
-One row per match.
+
+One row per Premier League match.
+
+Planned source file:
+
+`data/raw/epl_2024_25_matches.csv`
+
+Expected key fields:
+
+| Column | Description |
+|---|---|
+| `Date` | Match date |
+| `HomeTeam` | Home team name |
+| `AwayTeam` | Away team name |
+| `FTHG` | Full-time home goals |
+| `FTAG` | Full-time away goals |
+| `FTR` | Full-time result |
+| `HS` | Home team shots |
+| `AS` | Away team shots |
+| `HST` | Home shots on target |
+| `AST` | Away shots on target |
+| `HC` | Home corners |
+| `AC` | Away corners |
+| `HY` | Home yellow cards |
+| `AY` | Away yellow cards |
+| `HR` | Home red cards |
+| `AR` | Away red cards |
 
 ### shots
 One row per shot.
