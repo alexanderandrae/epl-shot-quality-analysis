@@ -48,6 +48,53 @@ Notes:
 - Betting odds columns are excluded from the first version of the SQL workflow.
 - This table will later be reshaped into a team-match table with one row per team per match.
 
+---
+
+### matches_clean
+
+One row per Premier League match.
+
+Source file:
+
+`data/clean/epl_2024_25_matches_clean.csv`
+
+Purpose:
+
+Cleaned match-level dataset prepared for MySQL import.
+
+| Column | Description | Initial Data Type |
+|---|---|---|
+| `division` | League division | Text |
+| `match_date` | Match date | Date |
+| `kickoff_time` | Match kickoff time | Text |
+| `home_team` | Home team name | Text |
+| `away_team` | Away team name | Text |
+| `full_time_home_goals` | Full-time home goals | Integer |
+| `full_time_away_goals` | Full-time away goals | Integer |
+| `full_time_result` | Full-time result: H = home win, D = draw, A = away win | Text |
+| `half_time_home_goals` | Half-time home goals | Integer |
+| `half_time_away_goals` | Half-time away goals | Integer |
+| `half_time_result` | Half-time result: H = home lead, D = draw, A = away lead | Text |
+| `referee` | Match referee | Text |
+| `home_shots` | Home team shots | Integer |
+| `away_shots` | Away team shots | Integer |
+| `home_shots_on_target` | Home shots on target | Integer |
+| `away_shots_on_target` | Away shots on target | Integer |
+| `home_fouls` | Home fouls committed | Integer |
+| `away_fouls` | Away fouls committed | Integer |
+| `home_corners` | Home corners | Integer |
+| `away_corners` | Away corners | Integer |
+| `home_yellow_cards` | Home yellow cards | Integer |
+| `away_yellow_cards` | Away yellow cards | Integer |
+| `home_red_cards` | Home red cards | Integer |
+| `away_red_cards` | Away red cards | Integer |
+
+Notes:
+
+- This file excludes betting odds columns.
+- This file uses SQL-friendly column names.
+- This file will be used to create the first MySQL table.
+
 ### shots
 One row per shot.
 
