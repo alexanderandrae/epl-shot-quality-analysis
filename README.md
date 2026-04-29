@@ -45,4 +45,11 @@ sql/
   04_analysis_queries.sql
 
 ## Project Status
-Football-Data match dataset added. Initial column inspection and source documentation in progress.
+
+Football-Data match dataset added and cleaned for initial MySQL import.
+
+Current stage:
+- raw match data uploaded
+- clean selected-column dataset created
+- data source documentation started
+- data dictionary updated
