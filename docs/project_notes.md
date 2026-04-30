@@ -201,3 +201,47 @@ This cleaned file will be used as the import file for the first MySQL table.
 ### Notes
 
 The cleaned file focuses on match results and match statistics only. Betting odds may be revisited in a future version of the project but are outside the scope of the initial performance analysis.
+
+---
+
+## MySQL Clean Match Table Created
+
+### SQL Script
+
+`sql/02_clean_tables.sql`
+
+### Source Table
+
+`raw_matches`
+
+### Clean Table Created
+
+`clean_matches`
+
+### Table Grain
+
+One row represents one Premier League match.
+
+### Cleaning Actions Completed
+
+- Converted `match_date` from text to SQL date format.
+- Added readable result labels for full-time result.
+- Added readable result labels for half-time result.
+- Created match-level derived fields:
+  - `total_goals`
+  - `total_shots`
+  - `total_shots_on_target`
+  - `total_corners`
+  - `total_yellow_cards`
+  - `total_red_cards`
+
+### Validation Checks
+
+- Expected row count: 380
+- Confirmed no null match dates after date conversion.
+- Confirmed full-time result labels match source result codes.
+- Checked sample derived totals.
+
+### Notes
+
+The `clean_matches` table is still match-level. The next stage will reshape the data into a team-match table with one row per team per match.
