@@ -46,10 +46,12 @@ sql/
 
 ## Project Status
 
-Football-Data match dataset added and cleaned for initial MySQL import.
+Football-Data match dataset has been imported into MySQL and transformed into a cleaned match-level table.
 
 Current stage:
 - raw match data uploaded
 - clean selected-column dataset created
-- data source documentation started
-- data dictionary updated
+- MySQL database created
+- `raw_matches` table created
+- `clean_matches` table created
+- basic import and cleaning validation completed
