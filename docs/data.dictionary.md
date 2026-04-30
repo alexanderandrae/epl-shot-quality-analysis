@@ -95,6 +95,65 @@ Notes:
 - This file uses SQL-friendly column names.
 - This file will be used to create the first MySQL table.
 
+---
+
+### clean_matches
+
+One row per Premier League match.
+
+Source table:
+
+`raw_matches`
+
+Created by:
+
+`sql/02_clean_tables.sql`
+
+Purpose:
+
+Cleaned match-level SQL table prepared for analysis and later reshaping.
+
+| Column | Description | Data Type |
+|---|---|---|
+| `match_id` | Unique match identifier created during raw import | Integer |
+| `division` | League division | Text |
+| `match_date` | Match date converted to SQL date format | Date |
+| `kickoff_time` | Match kickoff time | Text |
+| `home_team` | Home team name | Text |
+| `away_team` | Away team name | Text |
+| `full_time_home_goals` | Full-time home goals | Integer |
+| `full_time_away_goals` | Full-time away goals | Integer |
+| `full_time_result` | Source result code: H, D, A | Text |
+| `full_time_result_label` | Readable full-time result label | Text |
+| `half_time_home_goals` | Half-time home goals | Integer |
+| `half_time_away_goals` | Half-time away goals | Integer |
+| `half_time_result` | Source half-time result code: H, D, A | Text |
+| `half_time_result_label` | Readable half-time result label | Text |
+| `referee` | Match referee | Text |
+| `home_shots` | Home team shots | Integer |
+| `away_shots` | Away team shots | Integer |
+| `home_shots_on_target` | Home shots on target | Integer |
+| `away_shots_on_target` | Away shots on target | Integer |
+| `home_fouls` | Home fouls committed | Integer |
+| `away_fouls` | Away fouls committed | Integer |
+| `home_corners` | Home corners | Integer |
+| `away_corners` | Away corners | Integer |
+| `home_yellow_cards` | Home yellow cards | Integer |
+| `away_yellow_cards` | Away yellow cards | Integer |
+| `home_red_cards` | Home red cards | Integer |
+| `away_red_cards` | Away red cards | Integer |
+| `total_goals` | Combined full-time goals for both teams | Integer |
+| `total_shots` | Combined shots for both teams | Integer |
+| `total_shots_on_target` | Combined shots on target for both teams | Integer |
+| `total_corners` | Combined corners for both teams | Integer |
+| `total_yellow_cards` | Combined yellow cards for both teams | Integer |
+| `total_red_cards` | Combined red cards for both teams | Integer |
+
+Notes:
+
+- This table is still match-level.
+- Team-level analysis will require reshaping into one row per team per match.
+
 ### shots
 One row per shot.
 
