@@ -177,3 +177,60 @@ One row per team per match.
 | shots_conceded_per_match | shots conceded / matches played | Team | Measures defensive shot suppression |
 | xg_conceded_per_match | xG conceded / matches played | Team | Measures defensive vulnerability |
 | xg_conceded_per_shot | xG conceded / shots conceded | Team | Measures quality of chances conceded |
+
+---
+
+### team_match_stats
+
+One row per team per Premier League match.
+
+Source table:
+
+`clean_matches`
+
+Created by:
+
+`sql/03_derived_tables.sql`
+
+Purpose:
+
+Reshaped team-level match table used for team performance analysis.
+
+| Column | Description | Data Type |
+|---|---|---|
+| `match_id` | Match identifier from clean match table | Integer |
+| `division` | League division | Text |
+| `match_date` | Match date | Date |
+| `kickoff_time` | Match kickoff time | Text |
+| `team` | Team being analysed | Text |
+| `opponent` | Opposing team | Text |
+| `venue` | Home or Away | Text |
+| `goals_for` | Goals scored by the team | Integer |
+| `goals_against` | Goals conceded by the team | Integer |
+| `goal_difference` | Goals for minus goals against | Integer |
+| `result` | Team result: W, D, or L | Text |
+| `points` | League points earned by the team | Integer |
+| `half_time_goals_for` | Team goals at half-time | Integer |
+| `half_time_goals_against` | Opponent goals at half-time | Integer |
+| `half_time_goal_difference` | Half-time goals for minus half-time goals against | Integer |
+| `shots_for` | Shots taken by the team | Integer |
+| `shots_against` | Shots conceded by the team | Integer |
+| `shots_on_target_for` | Team shots on target | Integer |
+| `shots_on_target_against` | Opponent shots on target | Integer |
+| `shot_on_target_rate_for` | Team shots on target divided by team shots | Decimal |
+| `shot_on_target_rate_against` | Opponent shots on target divided by opponent shots | Decimal |
+| `fouls_committed` | Fouls committed by the team | Integer |
+| `fouls_won` | Fouls committed by the opponent | Integer |
+| `corners_for` | Corners won by the team | Integer |
+| `corners_against` | Corners won by the opponent | Integer |
+| `yellow_cards` | Yellow cards received by the team | Integer |
+| `opponent_yellow_cards` | Yellow cards received by the opponent | Integer |
+| `red_cards` | Red cards received by the team | Integer |
+| `opponent_red_cards` | Red cards received by the opponent | Integer |
+
+Notes:
+
+- This table converts home/away match data into team-perspective data.
+- This is the main table for team-level analysis.
+- Each team should have 38 rows.
+- The full table should contain 760 rows.
