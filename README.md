@@ -46,7 +46,7 @@ sql/
 
 ## Project Status
 
-Football-Data match dataset has been imported into MySQL and transformed into a cleaned match-level table.
+Football-Data match data has been imported, cleaned, and reshaped into a team-level match table.
 
 Current stage:
 - raw match data uploaded
@@ -54,4 +54,5 @@ Current stage:
 - MySQL database created
 - `raw_matches` table created
 - `clean_matches` table created
-- basic import and cleaning validation completed
+- `team_match_stats` table created
+- match-level data reshaped into team-match format
