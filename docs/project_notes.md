@@ -245,3 +245,63 @@ One row represents one Premier League match.
 ### Notes
 
 The `clean_matches` table is still match-level. The next stage will reshape the data into a team-match table with one row per team per match.
+
+---
+
+## Team Match Stats Table Created
+
+### SQL Script
+
+`sql/03_derived_tables.sql`
+
+### Source Table
+
+`clean_matches`
+
+### Derived Table Created
+
+`team_match_stats`
+
+### Table Grain
+
+One row represents one team in one Premier League match.
+
+### Transformation Completed
+
+The match-level table was reshaped from one row per match into one row per team per match.
+
+Each match now appears as two rows:
+
+- one row for the home team
+- one row for the away team
+
+### New Team-Perspective Fields
+
+- `team`
+- `opponent`
+- `venue`
+- `goals_for`
+- `goals_against`
+- `goal_difference`
+- `result`
+- `points`
+- `shots_for`
+- `shots_against`
+- `shots_on_target_for`
+- `shots_on_target_against`
+- `corners_for`
+- `corners_against`
+- `yellow_cards`
+- `red_cards`
+
+### Validation Checks
+
+- Expected row count: 760
+- Expected teams: 20
+- Expected matches per team: 38
+- Expected venue rows: 380 home and 380 away
+- Expected result categories: `W`, `D`, `L`
+
+### Notes
+
+This table is the foundation for team-level analysis. It allows performance metrics to be calculated consistently regardless of whether a team played at home or away.
