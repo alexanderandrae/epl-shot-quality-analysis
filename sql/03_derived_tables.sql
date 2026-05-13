@@ -149,3 +149,88 @@ ON team_match_stats (venue);
 -- Basic checks:
 -- SELECT COUNT(*) AS total_team_match_rows FROM team_match_stats;
 -- SELECT * FROM team_match_stats LIMIT 10;
+
+-- ------------------------------------------------------------
+-- Create team season summary table
+-- ------------------------------------------------------------
+-- Source table:
+-- team_match_stats
+--
+-- Output table:
+-- team_season_summary
+--
+-- Table grain:
+-- One row represents one team across the full Premier League season.
+
+DROP TABLE IF EXISTS team_season_summary;
+
+CREATE TABLE team_season_summary AS
+SELECT
+    team,
+
+    COUNT(*) AS matches_played,
+
+    SUM(CASE WHEN venue = 'Home' THEN 1 ELSE 0 END) AS home_matches,
+    SUM(CASE WHEN venue = 'Away' THEN 1 ELSE 0 END) AS away_matches,
+
+    SUM(CASE WHEN result = 'W' THEN 1 ELSE 0 END) AS wins,
+    SUM(CASE WHEN result = 'D' THEN 1 ELSE 0 END) AS draws,
+    SUM(CASE WHEN result = 'L' THEN 1 ELSE 0 END) AS losses,
+
+    SUM(points) AS points,
+
+    SUM(goals_for) AS goals_for,
+    SUM(goals_against) AS goals_against,
+    SUM(goal_difference) AS goal_difference,
+
+    ROUND(AVG(goals_for), 2) AS goals_for_per_match,
+    ROUND(AVG(goals_against), 2) AS goals_against_per_match,
+
+    SUM(shots_for) AS shots_for,
+    SUM(shots_against) AS shots_against,
+
+    ROUND(AVG(shots_for), 2) AS shots_for_per_match,
+    ROUND(AVG(shots_against), 2) AS shots_against_per_match,
+
+    SUM(shots_on_target_for) AS shots_on_target_for,
+    SUM(shots_on_target_against) AS shots_on_target_against,
+
+    ROUND(AVG(shots_on_target_for), 2) AS shots_on_target_for_per_match,
+    ROUND(AVG(shots_on_target_against), 2) AS shots_on_target_against_per_match,
+
+    ROUND(SUM(shots_on_target_for) / NULLIF(SUM(shots_for), 0), 3) AS shot_on_target_rate_for,
+    ROUND(SUM(shots_on_target_against) / NULLIF(SUM(shots_against), 0), 3) AS shot_on_target_rate_against,
+
+    ROUND(SUM(goals_for) / NULLIF(SUM(shots_for), 0), 3) AS goal_conversion_rate,
+    ROUND(SUM(goals_against) / NULLIF(SUM(shots_against), 0), 3) AS opponent_goal_conversion_rate,
+
+    SUM(shots_for) - SUM(shots_against) AS shot_difference,
+    SUM(shots_on_target_for) - SUM(shots_on_target_against) AS shots_on_target_difference,
+
+    SUM(corners_for) AS corners_for,
+    SUM(corners_against) AS corners_against,
+
+    ROUND(AVG(corners_for), 2) AS corners_for_per_match,
+    ROUND(AVG(corners_against), 2) AS corners_against_per_match,
+
+    SUM(fouls_committed) AS fouls_committed,
+    SUM(fouls_won) AS fouls_won,
+
+    SUM(yellow_cards) AS yellow_cards,
+    SUM(red_cards) AS red_cards
+
+FROM team_match_stats
+GROUP BY team;
+
+ALTER TABLE team_season_summary
+ADD PRIMARY KEY (team);
+
+CREATE INDEX idx_team_season_summary_points
+ON team_season_summary (points);
+
+CREATE INDEX idx_team_season_summary_goal_difference
+ON team_season_summary (goal_difference);
+
+-- Basic checks:
+-- SELECT COUNT(*) AS total_teams FROM team_season_summary;
+-- SELECT * FROM team_season_summary ORDER BY points DESC;
