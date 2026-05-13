@@ -305,3 +305,61 @@ Each match now appears as two rows:
 ### Notes
 
 This table is the foundation for team-level analysis. It allows performance metrics to be calculated consistently regardless of whether a team played at home or away.
+
+---
+
+## Team Season Summary Table Created
+
+### SQL Script
+
+`sql/03_derived_tables.sql`
+
+### Source Table
+
+`team_match_stats`
+
+### Derived Table Created
+
+`team_season_summary`
+
+### Table Grain
+
+One row represents one team across the full Premier League season.
+
+### Transformation Completed
+
+The team-match table was aggregated into a season-level team summary.
+
+### Key Metrics Created
+
+- `matches_played`
+- `home_matches`
+- `away_matches`
+- `wins`
+- `draws`
+- `losses`
+- `points`
+- `goals_for`
+- `goals_against`
+- `goal_difference`
+- `shots_for`
+- `shots_against`
+- `shots_for_per_match`
+- `shots_against_per_match`
+- `shots_on_target_for`
+- `shots_on_target_against`
+- `shot_on_target_rate_for`
+- `shot_on_target_rate_against`
+- `goal_conversion_rate`
+- `opponent_goal_conversion_rate`
+
+### Validation Checks
+
+- Expected row count: 20 teams
+- Expected matches per team: 38
+- Expected home matches per team: 19
+- Expected away matches per team: 19
+
+### Notes
+
+This table is the first analysis-ready team-level output. It can be used to compare attacking volume, defensive shot suppression, shooting accuracy, and basic finishing efficiency across teams.
