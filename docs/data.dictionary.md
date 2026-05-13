@@ -234,3 +234,65 @@ Notes:
 - This is the main table for team-level analysis.
 - Each team should have 38 rows.
 - The full table should contain 760 rows.
+
+---
+
+### team_season_summary
+
+One row per team across the full Premier League season.
+
+Source table:
+
+`team_match_stats`
+
+Created by:
+
+`sql/03_derived_tables.sql`
+
+Purpose:
+
+Season-level team summary table used for performance comparison and portfolio outputs.
+
+| Column | Description | Data Type |
+|---|---|---|
+| `team` | Team name | Text |
+| `matches_played` | Number of matches played | Integer |
+| `home_matches` | Number of home matches | Integer |
+| `away_matches` | Number of away matches | Integer |
+| `wins` | Total wins | Integer |
+| `draws` | Total draws | Integer |
+| `losses` | Total losses | Integer |
+| `points` | Total league points | Integer |
+| `goals_for` | Total goals scored | Integer |
+| `goals_against` | Total goals conceded | Integer |
+| `goal_difference` | Goals for minus goals against | Integer |
+| `goals_for_per_match` | Average goals scored per match | Decimal |
+| `goals_against_per_match` | Average goals conceded per match | Decimal |
+| `shots_for` | Total shots taken | Integer |
+| `shots_against` | Total shots conceded | Integer |
+| `shots_for_per_match` | Average shots taken per match | Decimal |
+| `shots_against_per_match` | Average shots conceded per match | Decimal |
+| `shots_on_target_for` | Total shots on target | Integer |
+| `shots_on_target_against` | Total shots on target conceded | Integer |
+| `shots_on_target_for_per_match` | Average shots on target per match | Decimal |
+| `shots_on_target_against_per_match` | Average shots on target conceded per match | Decimal |
+| `shot_on_target_rate_for` | Shots on target for divided by total shots for | Decimal |
+| `shot_on_target_rate_against` | Shots on target against divided by total shots against | Decimal |
+| `goal_conversion_rate` | Goals for divided by shots for | Decimal |
+| `opponent_goal_conversion_rate` | Goals against divided by shots against | Decimal |
+| `shot_difference` | Shots for minus shots against | Integer |
+| `shots_on_target_difference` | Shots on target for minus shots on target against | Integer |
+| `corners_for` | Total corners won | Integer |
+| `corners_against` | Total corners conceded | Integer |
+| `corners_for_per_match` | Average corners won per match | Decimal |
+| `corners_against_per_match` | Average corners conceded per match | Decimal |
+| `fouls_committed` | Total fouls committed | Integer |
+| `fouls_won` | Total fouls won | Integer |
+| `yellow_cards` | Total yellow cards | Integer |
+| `red_cards` | Total red cards | Integer |
+
+Notes:
+
+- This is the first season-level team summary table.
+- It does not yet include expected goals.
+- Shot volume and shot accuracy are used as early proxies before xG is added.
