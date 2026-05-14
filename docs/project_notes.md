@@ -363,3 +363,43 @@ The team-match table was aggregated into a season-level team summary.
 ### Notes
 
 This table is the first analysis-ready team-level output. It can be used to compare attacking volume, defensive shot suppression, shooting accuracy, and basic finishing efficiency across teams.
+
+---
+
+## First Analysis Queries Created
+
+### SQL Script
+
+`sql/04_analysis_queries.sql`
+
+### Source Table
+
+`team_season_summary`
+
+### Analysis Areas
+
+The first set of analysis queries focuses on:
+
+- league table style performance
+- attacking volume
+- attacking efficiency
+- defensive shot suppression
+- defensive vulnerability
+- shot dominance
+- attacking profile segmentation
+- defensive profile segmentation
+- export-ready team summary
+
+### Key Analytical Notes
+
+Shot volume is being used as an early proxy for attacking pressure.
+
+Shots against per match is being used as an early proxy for defensive control.
+
+Goal conversion rate and opponent goal conversion rate are useful descriptive metrics, but they should not be overinterpreted before expected goals data is added.
+
+Expected goals data will be needed to separate finishing, shot quality, and defensive chance quality more clearly.
+
+### Next Step
+
+Review the query outputs and identify which tables should be exported for initial charts.
