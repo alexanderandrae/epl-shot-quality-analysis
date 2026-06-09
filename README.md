@@ -46,7 +46,7 @@ sql/
 
 ## Project Status
 
-Football-Data match data has been imported, cleaned, reshaped, aggregated, and used for first team-level analysis queries.
+Football-Data match data has been imported, cleaned, reshaped, aggregated, and exported into first analysis-ready tables.
 
 Current stage:
 - raw match data uploaded
@@ -56,4 +56,5 @@ Current stage:
 - `clean_matches` table created
 - `team_match_stats` table created
 - `team_season_summary` table created
-- first team-level analysis queries created
+- export-ready SQL views created
+- first analysis tables exported to `outputs/tables`
