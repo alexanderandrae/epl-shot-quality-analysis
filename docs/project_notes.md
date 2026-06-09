@@ -400,6 +400,37 @@ Goal conversion rate and opponent goal conversion rate are useful descriptive me
 
 Expected goals data will be needed to separate finishing, shot quality, and defensive chance quality more clearly.
 
-### Next Step
 
-Review the query outputs and identify which tables should be exported for initial charts.
+## First Export Tables Created
+
+### SQL Script
+
+`sql/04_analysis_queries.sql`
+
+### Views Created
+
+- `vw_team_summary_export`
+- `vw_attacking_profiles`
+- `vw_defensive_profiles`
+- `vw_shot_dominance_export`
+
+### Exported Files
+
+- `outputs/tables/Team_summary_metrics.csv`
+- `outputs/tables/Attacking_profiles.csv`
+- `outputs/tables/Defensive_profiles.csv`
+- `outputs/tables/Shot_dominance_summary.csv`
+
+### Purpose
+
+These files provide clean, repeatable outputs for Excel charting and portfolio visuals.
+
+### Validation Checks
+
+- Each export should contain 20 rows.
+- Each row should represent one Premier League team.
+- No missing team names should be present.
+
+### Notes
+
+The exports are based on match statistics only. Expected goals data has not yet been added, so early interpretations should focus on shot volume, shot accuracy, conversion, and defensive shot suppression rather than true chance quality.
