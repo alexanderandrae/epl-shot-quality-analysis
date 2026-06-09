@@ -278,3 +278,124 @@ SELECT
     opponent_goal_conversion_rate
 FROM team_season_summary
 ORDER BY points DESC;
+
+-- ------------------------------------------------------------
+-- Export-ready SQL views
+-- ------------------------------------------------------------
+-- Purpose:
+-- Create repeatable outputs that can be exported for Excel charts
+-- and saved in outputs/tables.
+--
+-- These views are based on the team_season_summary table.
+
+USE epl_shot_quality_analysis;
+
+
+-- ------------------------------------------------------------
+-- View 1: Export-ready team summary
+-- ------------------------------------------------------------
+
+CREATE OR REPLACE VIEW vw_team_summary_export AS
+SELECT
+    team,
+    points,
+    goal_difference,
+    goals_for,
+    goals_against,
+    goals_for_per_match,
+    goals_against_per_match,
+    shots_for_per_match,
+    shots_against_per_match,
+    shot_difference,
+    shots_on_target_difference,
+    shot_on_target_rate_for,
+    shot_on_target_rate_against,
+    goal_conversion_rate,
+    opponent_goal_conversion_rate
+FROM team_season_summary;
+
+
+-- ------------------------------------------------------------
+-- View 2: Attacking profile segmentation
+-- ------------------------------------------------------------
+
+CREATE OR REPLACE VIEW vw_attacking_profiles AS
+SELECT
+    t.team,
+    t.points,
+    t.goals_for_per_match,
+    t.shots_for_per_match,
+    t.shot_on_target_rate_for,
+    t.goal_conversion_rate,
+    CASE
+        WHEN t.shots_for_per_match >= l.avg_shots_for_per_match
+             AND t.shot_on_target_rate_for >= l.avg_shot_on_target_rate_for
+            THEN 'High volume / high accuracy'
+        WHEN t.shots_for_per_match >= l.avg_shots_for_per_match
+             AND t.shot_on_target_rate_for < l.avg_shot_on_target_rate_for
+            THEN 'High volume / low accuracy'
+        WHEN t.shots_for_per_match < l.avg_shots_for_per_match
+             AND t.shot_on_target_rate_for >= l.avg_shot_on_target_rate_for
+            THEN 'Low volume / high accuracy'
+        ELSE 'Low volume / low accuracy'
+    END AS attacking_profile
+FROM team_season_summary t
+CROSS JOIN (
+    SELECT
+        AVG(shots_for_per_match) AS avg_shots_for_per_match,
+        AVG(shot_on_target_rate_for) AS avg_shot_on_target_rate_for
+    FROM team_season_summary
+) l;
+
+
+-- ------------------------------------------------------------
+-- View 3: Defensive profile segmentation
+-- ------------------------------------------------------------
+
+CREATE OR REPLACE VIEW vw_defensive_profiles AS
+SELECT
+    t.team,
+    t.points,
+    t.goals_against_per_match,
+    t.shots_against_per_match,
+    t.shot_on_target_rate_against,
+    t.opponent_goal_conversion_rate,
+    CASE
+        WHEN t.shots_against_per_match < l.avg_shots_against_per_match
+             AND t.opponent_goal_conversion_rate < l.avg_opponent_goal_conversion_rate
+            THEN 'Low volume conceded / low conversion conceded'
+        WHEN t.shots_against_per_match < l.avg_shots_against_per_match
+             AND t.opponent_goal_conversion_rate >= l.avg_opponent_goal_conversion_rate
+            THEN 'Low volume conceded / high conversion conceded'
+        WHEN t.shots_against_per_match >= l.avg_shots_against_per_match
+             AND t.opponent_goal_conversion_rate < l.avg_opponent_goal_conversion_rate
+            THEN 'High volume conceded / low conversion conceded'
+        ELSE 'High volume conceded / high conversion conceded'
+    END AS defensive_profile
+FROM team_season_summary t
+CROSS JOIN (
+    SELECT
+        AVG(shots_against_per_match) AS avg_shots_against_per_match,
+        AVG(opponent_goal_conversion_rate) AS avg_opponent_goal_conversion_rate
+    FROM team_season_summary
+) l;
+
+
+-- ------------------------------------------------------------
+-- View 4: Shot dominance export
+-- ------------------------------------------------------------
+
+CREATE OR REPLACE VIEW vw_shot_dominance_export AS
+SELECT
+    team,
+    points,
+    goal_difference,
+    shots_for,
+    shots_against,
+    shot_difference,
+    shots_on_target_for,
+    shots_on_target_against,
+    shots_on_target_difference,
+    shots_for_per_match,
+    shots_against_per_match
+FROM team_season_summary;
