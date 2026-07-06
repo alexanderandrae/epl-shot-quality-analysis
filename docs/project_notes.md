@@ -434,3 +434,62 @@ These files provide clean, repeatable outputs for Excel charting and portfolio v
 ### Notes
 
 The exports are based on match statistics only. Expected goals data has not yet been added, so early interpretations should focus on shot volume, shot accuracy, conversion, and defensive shot suppression rather than true chance quality.
+
+---
+
+## First Chart Created: Attacking Volume vs Scoring Output
+
+### Source File
+
+`outputs/tables/team_summary_metrics.csv`
+
+### Chart File
+
+`outputs/charts/attacking_volume_vs_scoring.png`
+
+### Metrics Used
+
+- `shots_for_per_match`
+- `goals_for_per_match`
+
+### Chart Type
+
+Scatter plot.
+
+### Purpose
+
+This chart compares attacking volume with scoring output across Premier League teams.
+
+The aim is to explore whether teams that generate more shots per match also tend to score more goals per match.
+
+### Interpretation Framework
+
+The chart uses league-average reference lines to split teams into four broad attacking profiles:
+
+- High shots / high goals: strong attacking output
+- High shots / lower goals: high volume but weaker scoring return
+- Lower shots / high goals: efficient or selective scoring output
+- Lower shots / lower goals: limited attacking output
+
+### Analytical Notes
+
+This chart compares a process metric with an outcome metric.
+
+- `shots_for_per_match` is used as an early proxy for attacking pressure.
+- `goals_for_per_match` measures scoring output.
+- The chart suggests whether shot volume and goal output move together across teams.
+
+Expected goals data has not yet been added, so this chart should not be interpreted as a complete measure of chance quality.
+
+A team with high shot volume is not automatically creating high-quality chances. A team with strong scoring output from lower shot volume may be finishing efficiently, selecting better chances, or benefiting from variance.
+
+### Chart Refinement Notes
+
+The chart was reviewed and cleaned before upload.
+
+Updates included:
+
+- removing the incorrect `team` header label from the chart
+- removing the unnecessary `Series1` legend
+- improving chart readability
+- using league-average reference lines to support interpretation
