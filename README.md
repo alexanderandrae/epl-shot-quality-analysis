@@ -57,18 +57,31 @@ Each point represents one team. The dashed reference lines show the league avera
 
 The chart provides an early view of which teams generated high attacking volume, which teams converted that volume into goals, and which teams may require deeper expected goals analysis to separate finishing efficiency from chance quality.
 
+## Preliminary Findings
+
+Initial analysis of the 2024/25 Premier League season identified several differences between shooting volume and team outcomes.
+
+**Key observations:**
+
+- Liverpool combined high attacking volume with high scoring output, averaging 17.05 shots and 2.26 goals per match.
+- Brentford averaged fewer shots than Bournemouth (11.61 vs 15.26) but scored more goals per match (1.74 vs 1.53).
+- Nottingham Forest earned 65 points despite a negative shot difference, while Manchester United earned 42 points with a positive shot difference.
+
+These results suggest that shooting volume alone is insufficient to explain team performance.
+
+The next stage will investigate expected goals (xG) and expected goals against (xGA) to better understand differences in chance quality and outcomes.
+
+[Read the full preliminary findings](docs/preliminary_findings.md)
+
 ## Project Status
 
-Football-Data match data has been imported, cleaned, reshaped, aggregated, exported, and used to create the first exploratory visual.
+**Current stage: Preliminary analysis completed**
 
-Current stage:
-- raw match data uploaded
-- clean selected-column dataset created
-- MySQL database created
-- `raw_matches` table created
-- `clean_matches` table created
-- `team_match_stats` table created
-- `team_season_summary` table created
-- export-ready SQL views created
-- first analysis tables exported to `outputs/tables`
-- first exploratory chart added to `outputs/charts`
+- EPL 2024/25 match data imported and cleaned in MySQL
+- Team-match and team-season summary tables created
+- Attacking and defensive metrics calculated
+- SQL analysis views and CSV exports created
+- Initial attacking visual completed
+- Preliminary findings documented
+
+**Next:** Integrate expected goals (xG) data to assess chance quality and finishing performance.
